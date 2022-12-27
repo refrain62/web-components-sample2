@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<body>
+    <div>
+        <my-profile fullname="Taro Suzuki" age="1"></my-profile>
+    </div>
+
+    <script src="./lifecycle.js"></script>
+
+    <script>
+        let intervalId;
+        // 1000ms毎に処理
+        intervalId = setInterval((() => {
+            // カスタム要素を取得
+            const profile = document.querySelector('my-profile');
+
+            // 文字列を数値に変換
+            let age = Number( profile.getAttribute('age') );
+
+            age += 1;
+            
+            // 属性の更新 
+            profile.setAttribute('age', age);
+
+            // 10才になったら、インターバルを終了する
+            if( age >= 10 ) {
+                clearInterval( intervalId );
+            }
+        }), 1000);
+    </script>
+</body>
+</html>
